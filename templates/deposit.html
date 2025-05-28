@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deposit - My Bank</title>
+</head>
+<body style="font-family: Arial; background-color: #f4f4f4; padding: 40px;">
+
+    <h2>💰 Make a Deposit</h2>
+    <form action="/deposit" method="POST" style="background: white; padding: 20px; width: 400px; border-radius: 8px; box-shadow: 0 0 10px #ccc;">
+        <label>Amount (₹):</label><br>
+        <input type="number" name="amount" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+        <label>Deposit Method:</label><br>
+        <select name="method" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+            <option value="Cash">Cash</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+            <option value="UPI">UPI</option>
+        </select><br>
+
+        <button type="submit" style="padding: 10px 20px; background: green; color: white; border: none; border-radius: 5px;">Deposit</button>
+    </form>
+
+    <br>
+    <a href="/dashboard">⬅️ Back to Dashboard</a>
+
+    <h3 style="margin-top: 40px;">📜 Deposit History</h3>
+    {% if deposit_history %}
+    <table style="width: 80%; border-collapse: collapse; background: white; margin-top: 15px;">
+        <tr style="background: #333; color: white;">
+            <th style="padding: 10px;">Amount (₹)</th>
+            <th style="padding: 10px;">Method</th>
+            <th style="padding: 10px;">Date & Time</th>
+        </tr>
+        {% for deposit in deposit_history %}
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ccc;">{{ deposit.amount }}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ccc;">{{ deposit.method }}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ccc;">{{ deposit.deposit_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No deposits made yet.</p>
+    {% endif %}
+</body>
+</html>

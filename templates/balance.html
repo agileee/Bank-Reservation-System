@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Finances</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f2f4f8;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #0a3d62;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            color: white;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bank-logo {
+            height: 90px;
+            width: auto;
+            border-radius: 4px;
+        }
+
+        .brand-title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-right a:hover {
+            color: #f1c40f;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            flex: 1 1 250px;
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .bar-section {
+            margin-top: 40px;
+        }
+
+        .bar-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        .bar-container {
+            background: #e0e0e0;
+            height: 22px;
+            border-radius: 11px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .deposit-bar {
+            background: #4caf50;
+            height: 100%;
+            width: {{ deposit_percent }}%;
+        }
+
+        .sent-bar {
+            background: #f44336;
+            height: 100%;
+            width: {{ sent_percent }}%;
+        }
+
+        .percent-text {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="{{ url_for('static', filename='bank_logo.png') }}" alt="Bank Logo" class="bank-logo">
+            <span class="brand-title">MyBank</span>
+        </div>
+        <div class="nav-right">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/balance">Balance</a>
+            <a href="/transaction">Transactions</a>
+            <a href="/deposit">Deposit</a>
+            <a href="/loan">Loan</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Balance Content -->
+    <div class="container">
+        <h1>My Financial Overview</h1>
+
+        <div class="stats">
+            <div class="card">
+                <h2>Current Balance</h2>
+                <p>₹{{ balance }}</p>
+            </div>
+            <div class="card">
+                <h2>Total Deposits</h2>
+                <p>₹{{ total_deposits }}</p>
+            </div>
+            <div class="card">
+                <h2>Total Sent</h2>
+                <p>₹{{ total_sent }}</p>
+            </div>
+        </div>
+
+        <div class="bar-section">
+            <div class="bar-label">Deposit Percentage ({{ deposit_percent }}%)</div>
+            <div class="bar-container">
+                <div class="deposit-bar"></div>
+            </div>
+
+            <div class="bar-label">Transaction Sent Percentage ({{ sent_percent }}%)</div>
+            <div class="bar-container">
+                <div class="sent-bar"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

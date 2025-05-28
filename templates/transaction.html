@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction</title>
+</head>
+<body style="font-family: Arial; background-color: #f2f2f2; padding: 40px;">
+
+    <h2>💳 Make a Transaction</h2>
+    <form method="POST" action="/transaction" style="background: white; padding: 20px; width: 400px; border-radius: 8px; box-shadow: 0 0 10px #ccc;">
+        <label>Receiver Email:</label><br>
+        <input type="email" name="receiver" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+        <label>Amount (₹):</label><br>
+        <input type="number" name="amount" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+        <label>Transaction PIN:</label><br>
+        <input type="password" name="pin" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+        <button type="submit" style="padding: 10px 20px; background: blue; color: white; border: none; border-radius: 5px;">Send Money</button>
+    </form>
+
+    <br><a href="/dashboard">⬅️ Back to Dashboard</a>
+
+    <h3 style="margin-top: 40px;">📜 Transaction History</h3>
+    {% if history %}
+    <table style="width: 100%; border-collapse: collapse; background: white; margin-top: 15px;">
+        <tr style="background: #444; color: white;">
+            <th style="padding: 10px;">From</th>
+            <th style="padding: 10px;">To</th>
+            <th style="padding: 10px;">Amount (₹)</th>
+            <th style="padding: 10px;">Date & Time</th>
+        </tr>
+        {% for tx in history %}
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ccc;">{{ tx.sender_email }}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ccc;">{{ tx.receiver_email }}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ccc;">{{ tx.amount }}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ccc;">{{ tx.transaction_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No transactions yet.</p>
+    {% endif %}
+</body>
+</html>

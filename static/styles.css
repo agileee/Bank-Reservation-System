@@ -1,0 +1,86 @@
+/* ----------------------------
+   Reset & Base Styles
+----------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(120deg, #e0f7fa, #fdfdfd);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ----------------------------
+   Outer Container
+----------------------------- */
+.outer-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----------------------------
+   Inner Card Box
+----------------------------- */
+.inner-box {
+    background-color: #ffffff;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.inner-box h2 {
+    font-size: 22px;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+.inner-box h1 {
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 35px;
+}
+
+/* ----------------------------
+   Button Group
+----------------------------- */
+.home-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* ----------------------------
+   Buttons
+----------------------------- */
+.btn {
+    padding: 12px 28px;
+    text-decoration: none;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.3);
+}
